@@ -22,4 +22,4 @@ def __getattr__(name):
     raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
 
 
-__all__ = ["evaluate", "simple_evaluate", "__version__"]
+__all__ = ["evaluate", "simple_evaluate", "__version__", "task_manager"]

@@ -1,7 +1,7 @@
 tag:
   - math_word_problems
 task: gsm8k
-dataset_path: gsm8k
+dataset_path: /fast/jsingh/data/gsm8k-saved/gsm8k-main
 dataset_name: main
 output_type: generate_until
 training_split: train
