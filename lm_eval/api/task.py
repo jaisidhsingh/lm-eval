@@ -1002,11 +1002,18 @@ class ConfigurableTask(Task):
                 **(self.config.metadata or {}), **(self.config.dataset_kwargs or {})
             )
         else:
-            self.dataset = datasets.load_dataset(
-                path=self.DATASET_PATH,
-                name=self.DATASET_NAME,
-                **dataset_kwargs if dataset_kwargs is not None else {},
-            )
+            if "/fast/" not in self.DATASET_PATH:
+                self.dataset = datasets.load_dataset(
+                    path=self.DATASET_PATH,
+                    name=self.DATASET_NAME,
+                    **dataset_kwargs if dataset_kwargs is not None else {},
+                )
+            else:
+                print("Loading dataset from disk...")
+                self.dataset = datasets.load_from_disk(
+                    self.DATASET_PATH
+                )
+                print("Loaded!")
 
     def has_training_docs(self) -> bool:
         if self.config.training_split is not None:
