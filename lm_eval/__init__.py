@@ -9,12 +9,16 @@ __version__ = "0.4.9.1"
 def __getattr__(name):
     if name == "evaluate":
         from .evaluator import evaluate
-
         return evaluate
+    
     elif name == "simple_evaluate":
         from .evaluator import simple_evaluate
-
         return simple_evaluate
+    
+    elif name == "task_manager":
+        from .tasks import TaskManager
+        return TaskManager
+
     raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
 
 
